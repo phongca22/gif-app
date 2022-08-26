@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline">
+    <input matInput [matAutocomplete]="auto" [formControl]="keyCtrl" placeholder="Search all the GIFs">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith" (optionSelected)="select($event)">
+        <mat-option *ngFor="let item of items" [value]="item">
+            {{item.name}}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

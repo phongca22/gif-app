@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+    <span (click)="goHome()" class="title animate__animated animate__slideInLeft">Giphy</span>
+    <div fxLayout="row" fxLayoutGap="8px">
+        <button mat-icon-button matTooltip="Collections" (click)="goCollections()"
+            class="animate__animated animate__fadeInLeft">
+            <mat-icon>collections</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Upload" (click)="goUpload()" class="animate__animated animate__zoomIn">
+            <mat-icon>upload</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Favorite" (click)="goFavorite()" class="animate__animated animate__fadeInRight">
+            <mat-icon>favorite</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>

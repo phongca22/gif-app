@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.preview {
+  width: 100%;
+}
+
+.avatar {
+  width: 30px;
+}
+
+.container {
+  position: relative;
+}
+
+.user {
+  position: absolute;
+  bottom: 0px;
+  padding: 4px;
+}
+
+.favorite {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 4px;
+}
+
+.time-ago {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: rgb(255 255 255 / 86%);
+  background: rgb(0 0 0 / 38%);
+  right: 0px;
+  padding: 8px;
+}
+
+.image-wrapper {
+  position: relative;
+}

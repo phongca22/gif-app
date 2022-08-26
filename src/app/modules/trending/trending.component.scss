@@ -1,0 +1,13 @@
+:host {
+    display: block;
+    padding: 16px;
+    height: 100%;
+    position: relative;
+}
+
+.loader {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

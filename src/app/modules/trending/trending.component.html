@@ -1,0 +1,12 @@
+<div fxFill fxLayout="column">
+    <app-search-bar class="animate__animated animate__fadeIn" (keyChanged)="search($event)"></app-search-bar>
+    <div class="mat-headline animate__animated animate__fadeInUp">
+        Trending
+    </div>
+    <div fxFlex style="overflow: auto" scrollTracker (scrollingFinished)="loadMore()" fxLayout="row wrap">
+        <app-gif [data]="item" *ngFor="let item of items" fxFlex="25"></app-gif>
+    </div>
+    <div *ngIf="showLoader" class="loader">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>

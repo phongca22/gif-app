@@ -1,0 +1,59 @@
+<div fxFill fxLayout="column" fxLayoutAlign="center center" *ngIf="images.length === 0">
+  <div fxLayout="column" fxLayoutAlign=" center" fxLayoutGap="16px">
+    <mat-icon class="computer-icon animate__animated animate__zoomIn" color="primary">computer</mat-icon>
+    <button mat-raised-button color="primary" (click)="input.click()" class="animate__animated animate__fadeInLeft">Select GIFs from your computer</button>
+    <div class="mat-caption animate__animated animate__fadeInRight">Allowed File Extensions: GIF</div>
+  </div>
+</div>
+<div fxFill fxLayout="column" *ngIf="images.length > 0" [formGroup]="form">
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="16px">
+    <button mat-raised-button color="primary" (click)="input.click()" [disabled]="isUploading">Add more GIFs</button>
+    <button mat-raised-button color="primary" (click)="upload()" [disabled]="isUploading">Upload</button>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center" fxFlex>
+    <div formArrayName="images" fxLayout="row wrap" fxFlex="80">
+      <ng-container *ngFor="let item of images.controls; let i = index">
+        <div [formGroupName]="i" fxFlex="50">
+          <mat-card class="card-wrapper">
+            <div class="mat-title">
+              {{item.get('name')?.value}}
+            </div>
+            <img mat-card-image [src]="item.get('src')?.value">
+            <mat-card-content>
+              <mat-form-field style="width: 100%" appearance="outline">
+                <mat-label>Tags</mat-label>
+                <mat-icon matPrefix>tag</mat-icon>
+                <mat-chip-list #chipList [formControl]="tagCtrl">
+                  <mat-chip *ngFor="let tag of item.get('tags')?.value" (removed)="remove(tag, item)">
+                    {{tag}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input placeholder="Add new tag..." [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event, item)">
+                </mat-chip-list>
+              </mat-form-field>
+              <div *ngIf="item.get('isUploading')?.value && !item.get('isCompleted')?.value">
+                <div class="mat-caption">Uploading...</div>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </div>
+              <div *ngIf="item.get('isCompleted')?.value" fxLayout="row" fxLayoutAlign="center center"
+                fxLayoutGap="8px">
+                <mat-icon color="primary">check_circle</mat-icon>
+                <div class="mat-body">Uploaded</div>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center">
+                <button mat-raised-button color="warn" (click)="removeFile(i)" *ngIf="!item.get('isUploading')?.value">
+                  Remove
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<input type="file" style="display: none" #input accept=".gif" multiple (change)="selectFiles($event)" />

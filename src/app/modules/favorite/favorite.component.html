@@ -1,0 +1,10 @@
+<div fxFill fxLayout="column">
+    <div class="mat-headline animate__animated animate__fadeInUp">
+        Favorite
+    </div>
+    <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor="let item of items">
+            <app-gif [data]="item"></app-gif>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
