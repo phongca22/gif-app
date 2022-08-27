@@ -12,7 +12,7 @@ import { FavoriteService } from './favorite.service';
   providers: [DestroyService]
 })
 export class FavoriteComponent implements OnInit {
-  items: Gif[] = [];
+  items: Gif[];
   constructor(private service: FavoriteService, private router: Router, private readonly destroyer: DestroyService) {}
 
   ngOnInit(): void {

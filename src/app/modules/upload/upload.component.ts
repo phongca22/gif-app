@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { delay, finalize, from, mergeMap, tap } from 'rxjs';
-import { UploadService } from './upload.service';
+import { GiphyService } from 'src/app/services/giphy.service';
 
 @Component({
   selector: 'app-upload',
@@ -17,7 +17,7 @@ export class UploadComponent implements OnInit {
   isUploading: boolean;
   tagCtrl: FormControl = new FormControl();
 
-  constructor(private builder: FormBuilder, private service: UploadService) {}
+  constructor(private builder: FormBuilder, private service: GiphyService) {}
 
   get images() {
     return this.form.controls['images'] as FormArray;

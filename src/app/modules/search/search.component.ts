@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil, tap } from 'rxjs';
 import { Gif } from 'src/app/modules/gif/gif';
 import { DestroyService } from 'src/app/services/destroyer.service';
-import { SearchService } from './search.service';
+import { GiphyService } from 'src/app/services/giphy.service';
 
 @Component({
   selector: 'app-search',
@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   showLoader: boolean = true;
 
   constructor(
-    private service: SearchService,
+    private service: GiphyService,
     private route: ActivatedRoute,
     private readonly destroyer: DestroyService
   ) {}
@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
 
   getData() {
     this.service
-      .query(this.tag, this.offset, this.limit)
+      .search(this.tag, this.offset, this.limit)
       .pipe(
         tap(() => (this.showLoader = false)),
         takeUntil(this.destroyer)

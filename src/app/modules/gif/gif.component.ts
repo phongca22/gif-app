@@ -1,6 +1,19 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { concatMap, filter } from 'rxjs';
+import { GiphyService } from 'src/app/services/giphy.service';
 import { Gif } from './gif';
+import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 
 @Component({
   selector: 'app-gif',
@@ -11,11 +24,18 @@ import { Gif } from './gif';
 export class GifComponent implements OnInit, OnChanges {
   @Input() data: Gif;
   @Input() hideFavorite: boolean;
+  @Input() canRemove: boolean;
+  @Output() remove: EventEmitter<void>;
   showPanel: boolean;
   isFavorite: boolean;
   imageUrl: string;
 
-  constructor(private cdr: ChangeDetectorRef, private router: Router) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    private dialog: MatDialog,
+    private service: GiphyService
+  ) {}
 
   ngOnChanges(): void {
     if (this.data) {
@@ -25,7 +45,9 @@ export class GifComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.remove = new EventEmitter();
+  }
 
   loadImage() {
     const img = new Image();
@@ -39,5 +61,16 @@ export class GifComponent implements OnInit, OnChanges {
 
   view() {
     this.router.navigate(['gif-info', this.data.id]);
+  }
+
+  showConfirm() {
+    this.dialog
+      .open(RemoveDialogComponent)
+      .afterClosed()
+      .pipe(
+        filter((result: boolean) => result),
+        concatMap(() => this.service.remove(this.data.id))
+      )
+      .subscribe(() => this.remove.emit());
   }
 }

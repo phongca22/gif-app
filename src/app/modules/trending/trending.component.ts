@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil, tap } from 'rxjs';
+import { GiphyService } from 'src/app/services/giphy.service';
 import { DestroyService } from '../../services/destroyer.service';
 import { Gif } from '../gif/gif';
-import { TrendingService } from './trending.service';
 
 @Component({
   selector: 'app-trending',
@@ -18,7 +18,7 @@ export class TrendingComponent implements OnInit {
   limit: number = 10;
   showLoader: boolean = true;
 
-  constructor(private service: TrendingService, private readonly destroyer: DestroyService, private router: Router) {}
+  constructor(private service: GiphyService, private readonly destroyer: DestroyService, private router: Router) {}
 
   ngOnInit(): void {
     this.getData();
@@ -30,7 +30,7 @@ export class TrendingComponent implements OnInit {
 
   getData() {
     this.service
-      .getData(this.offset, this.limit)
+      .getDataByTrending(this.offset, this.limit)
       .pipe(
         tap(() => (this.showLoader = false)),
         takeUntil(this.destroyer)

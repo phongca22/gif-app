@@ -14,7 +14,7 @@ export class FavoriteService {
     if (ids.length === 0) {
       return of({ data: [] });
     } else {
-      return this.http.get('https://api.giphy.com/v1/gifs', {
+      return this.http.get('v1/gifs', {
         params: {
           ids: ids.join(',')
         }

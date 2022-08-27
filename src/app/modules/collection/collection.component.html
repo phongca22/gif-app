@@ -5,8 +5,11 @@
     <div fxFlex style="overflow: auto">
         <mat-grid-list cols="4" rowHeight="1:1">
             <mat-grid-tile *ngFor="let item of items">
-                <app-gif [data]="item" [hideFavorite]="true"></app-gif>
+                <app-gif [data]="item" [hideFavorite]="true" [canRemove]="true"></app-gif>
             </mat-grid-tile>
         </mat-grid-list>
+        <div *ngIf="items?.length === 0" class="animate__animated animate__fadeInDown">
+            There is no GIFs
+        </div>
     </div>
 </div>

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { DestroyService } from 'src/app/services/destroyer.service';
+import { GiphyService } from 'src/app/services/giphy.service';
 import { Gif } from '../gif/gif';
-import { GifInfoService } from './gif-info.service';
 
 @Component({
   selector: 'app-gif-info',
@@ -18,7 +18,7 @@ export class GifInfoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: GifInfoService,
+    private service: GiphyService,
     private readonly destroyer: DestroyService
   ) {}
 

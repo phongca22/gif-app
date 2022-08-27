@@ -13,7 +13,9 @@ export class GifFavoriteComponent implements OnInit {
 
   constructor(private storage: StorageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isFavorite = this.storage.isFavorite(this.data);
+  }
 
   setFavorite() {
     if (this.isFavorite) {

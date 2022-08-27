@@ -4,7 +4,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { isString } from 'lodash';
 import { debounce, switchMap, takeUntil, tap, timer } from 'rxjs';
 import { DestroyService } from 'src/app/services/destroyer.service';
-import { SearchBarService } from './search-bar.service';
+import { GiphyService } from 'src/app/services/giphy.service';
 import { Tag } from './tag';
 
 @Component({
@@ -19,7 +19,7 @@ export class SearchBarComponent implements OnInit {
   items: Tag[] = [];
   keyCtrl: FormControl = new FormControl();
 
-  constructor(private readonly destroyer: DestroyService, private service: SearchBarService) {}
+  constructor(private readonly destroyer: DestroyService, private service: GiphyService) {}
 
   ngOnInit(): void {
     this.keyCtrl.valueChanges
@@ -27,7 +27,7 @@ export class SearchBarComponent implements OnInit {
         tap(() => (this.items = [])),
         debounce(() => timer(500)),
         switchMap((key: string) => {
-          return this.service.query(key);
+          return this.service.getTags(key);
         }),
         takeUntil(this.destroyer)
       )
