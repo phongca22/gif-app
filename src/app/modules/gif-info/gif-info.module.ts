@@ -3,23 +3,24 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GifComponent } from './gif.component';
-import { GifFavoriteComponent } from './gif-favorite/gif-favorite.component';
+import { GifModule } from '../gif/gif.module';
+import { GifInfoRoutingModule } from './gif-info-routing.module';
+import { GifInfoComponent } from './gif-info.component';
 
 @NgModule({
-  declarations: [GifComponent, GifFavoriteComponent],
+  declarations: [GifInfoComponent],
   imports: [
     CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
+    GifInfoRoutingModule,
     MatProgressSpinnerModule,
     FlexLayoutModule,
-    MatExpansionModule
-  ],
-  exports: [GifComponent, GifFavoriteComponent]
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    GifModule
+  ]
 })
-export class GifModule {}
+export class GifInfoModule {}

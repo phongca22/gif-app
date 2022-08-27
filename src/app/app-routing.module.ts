@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'favorite', loadChildren: () => import('./modules/favorite/favorite.module').then(m => m.FavoriteModule) },
   { path: 'upload', loadChildren: () => import('./modules/upload/upload.module').then(m => m.UploadModule) },
   { path: 'collection', loadChildren: () => import('./modules/collection/collection.module').then(m => m.CollectionModule) },
+  { path: 'gif-info', loadChildren: () => import('./modules/gif-info/gif-info.module').then(m => m.GifInfoModule) },
   { path: '**', redirectTo: 'trending' }
 ];
 

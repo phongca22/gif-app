@@ -1,15 +1,15 @@
 <div class="container" (mouseenter)="showPanel = true" (mouseleave)="showPanel = false">
-    <div *ngIf="imageUrl" class="image-wrapper">
-        <img [src]="imageUrl" class="preview animate__animated  animate__zoomIn">
-        <div class="time-ago animate__animated animate__fadeInUp">{{data.timeAgo}}</div>
-    </div>
-    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!imageUrl" class="animate__animated  animate__fadeIn">
-        <mat-spinner diameter="40"></mat-spinner>
-    </div>
-    <div class="favorite" *ngIf="showPanel && !hideFavorite">
-        <button mat-icon-button [color]="isFavorite ? 'accent' : ''" (click)="setFavorite()">
-            <mat-icon>favorite</mat-icon>
-        </button>
+    <div class="body" (click)="view()">
+        <div *ngIf="imageUrl" class="image-wrapper">
+            <img [src]="imageUrl" class="preview animate__animated  animate__zoomIn">
+            <div class="time-ago animate__animated animate__fadeInUp">{{data.timeAgo}}</div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!imageUrl" class="animate__animated  animate__fadeIn">
+            <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        <div class="favorite" *ngIf="showPanel && !hideFavorite">
+            <app-gif-favorite [data]="data.id"></app-gif-favorite>
+        </div>
     </div>
     <mat-expansion-panel *ngIf="imageUrl" style="margin-bottom: 16px" class="animate__animated  animate__fadeInDown">
         <mat-expansion-panel-header>
@@ -18,10 +18,9 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="8px">
-            <img [src]="data.user.avatar" class="avatar" />
-            <div fxFlex>@{{data.user.username}}</div>
+            <img [src]="data.user.avatar" *ngIf="data.user.avatar" class="avatar" />
+            <div fxFlex>{{data.user.username}}</div>
             <div>Rating: {{data.rating}}</div>
-
         </div>
     </mat-expansion-panel>
 </div>

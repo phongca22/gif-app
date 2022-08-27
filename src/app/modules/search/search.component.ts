@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
       )
       .subscribe(({ data, pagination }: any) => {
         this.total = pagination.total_count;
-        this.items = [...this.items, ...data.map((val: any) => new Gif(val))];
+        this.items = [...this.items, ...data.map((val: any) => new Gif(val, 'import_datetime'))];
       });
   }
 

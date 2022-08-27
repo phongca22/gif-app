@@ -30,14 +30,18 @@
 
 .time-ago {
   position: absolute;
-  bottom: 0px;
+  bottom: 4px;
   left: 0px;
-  color: rgb(255 255 255 / 86%);
-  background: rgb(0 0 0 / 38%);
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(0, 0, 0, 0.38);
   right: 0px;
-  padding: 8px;
+  padding: 4px 8px;
 }
 
 .image-wrapper {
   position: relative;
+}
+
+.body {
+  cursor: pointer;
 }

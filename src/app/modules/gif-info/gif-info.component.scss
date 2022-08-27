@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  padding: 16px;
+  height: 100%;
+}
+
+.card-wrapper {
+  flex: 1 1 1e-9px;
+  overflow: auto;
+  padding: 16px;
+}

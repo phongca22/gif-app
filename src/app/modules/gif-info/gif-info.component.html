@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFill>
+    <mat-spinner diameter="40" *ngIf="!imageUrl"></mat-spinner>
+    <div *ngIf="imageUrl" fxLayout="row" fxLayoutAlign="center start" class="card-wrapper">
+        <mat-card fxFlex="70">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>{{item.title}}</div>
+                <div>{{item.timeAgo}}</div>
+            </div>
+            <br/>
+            <img mat-card-image [src]="imageUrl" alt="Photo of a Shiba Inu">
+            <mat-card-header>
+                <img [src]="item.user.avatar" mat-card-avatar />
+                <mat-card-title>{{item.user.name}}</mat-card-title>
+                <mat-card-subtitle>{{item.user.description}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+                <app-gif-favorite [data]="item.id" color="black"></app-gif-favorite>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

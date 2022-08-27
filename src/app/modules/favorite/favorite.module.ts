@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { GifModule } from 'src/app/modules/gif/gif.module';
@@ -9,6 +10,6 @@ import { FavoriteComponent } from './favorite.component';
 
 @NgModule({
   declarations: [FavoriteComponent],
-  imports: [CommonModule, FavoriteRoutingModule, SearchBarModule, MatGridListModule, GifModule]
+  imports: [CommonModule, FavoriteRoutingModule, SearchBarModule, MatGridListModule, GifModule, FlexLayoutModule]
 })
 export class FavoriteModule {}

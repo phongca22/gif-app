@@ -1,10 +1,7 @@
 <div fxFill fxLayout="column">
     <app-search-bar [data]="key" (keyChanged)="search($event)"></app-search-bar>
-    <div fxFlex style="overflow: auto" scrollTracker (scrollingFinished)="loadMore()">
-        <mat-grid-list cols="4" rowHeight="1:1">
-            <mat-grid-tile *ngFor="let item of items">
-                <app-gif [data]="item"></app-gif>
-            </mat-grid-tile>
-        </mat-grid-list>
+    <div class="mat-caption">{{total | number}} GIFs</div>
+    <div fxFlex style="overflow: auto" scrollTracker (scrollingFinished)="loadMore()" fxLayout="row wrap">
+        <app-gif [data]="item" *ngFor="let item of items" fxFlex="25"></app-gif>
     </div>
 </div>

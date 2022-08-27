@@ -1,0 +1,4 @@
+<button mat-icon-button [color]="isFavorite ? 'accent' : ''" (click)="setFavorite(); $event.stopPropagation()"
+    [ngStyle]="{color: !isFavorite ? (color || 'white') : ''}">
+    <mat-icon>favorite</mat-icon>
+</button>

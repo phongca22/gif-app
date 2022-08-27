@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
-import { StorageService } from '../../services/storage.service';
+import { Router } from '@angular/router';
 import { Gif } from './gif';
 
 @Component({
@@ -15,37 +15,29 @@ export class GifComponent implements OnInit, OnChanges {
   isFavorite: boolean;
   imageUrl: string;
 
-  constructor(private storage: StorageService, private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private router: Router) {}
 
   ngOnChanges(): void {
     if (this.data) {
-      this.isFavorite = this.storage.isFavorite(this.data.id);
       this.loadImage();
     } else {
-      this.isFavorite = false;
       this.cdr.markForCheck();
     }
   }
 
   ngOnInit(): void {}
 
-  setFavorite() {
-    if (this.isFavorite) {
-      this.storage.removeFavorite(this.data!.id);
-    } else {
-      this.storage.addFavorite(this.data!.id);
-    }
-    this.isFavorite = !this.isFavorite;
-    this.cdr.markForCheck();
-  }
-
   loadImage() {
     const img = new Image();
     img.onload = () => {
-      this.imageUrl = this.data?.image.preview;
+      this.imageUrl = this.data?.image.original;
       this.cdr.markForCheck();
     };
 
-    img.src = this.data!.image.preview;
+    img.src = this.data!.image.original;
+  }
+
+  view() {
+    this.router.navigate(['gif-info', this.data.id]);
   }
 }

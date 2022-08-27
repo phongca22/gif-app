@@ -37,7 +37,7 @@ export class TrendingComponent implements OnInit {
       )
       .subscribe(({ data, pagination }: any) => {
         this.total = pagination.total_count;
-        this.items = [...this.items, ...data.map((val: any) => new Gif(val))];
+        this.items = [...this.items, ...data.map((val: any) => new Gif(val, 'trending_datetime'))];
       });
   }
 

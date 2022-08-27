@@ -19,8 +19,8 @@ export class FavoriteComponent implements OnInit {
     this.service
       .getData()
       .pipe(takeUntil(this.destroyer))
-      .subscribe(({ data, pagination }: any) => {
-        this.items = data.map((val: any) => new Gif(val));
+      .subscribe(({ data }: any) => {
+        this.items = data.map((val: any) => new Gif(val, 'import_datetime'));
       });
   }
 

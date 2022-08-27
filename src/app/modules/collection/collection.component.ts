@@ -24,7 +24,7 @@ export class CollectionComponent implements OnInit {
       .getData()
       .pipe(takeUntil(this.destroyer))
       .subscribe(({ results }: any) => {
-        this.items = results.map((val: any) => new Gif(val));
+        this.items = results.map((val: any) => new Gif(val, 'create_datetime'));
       });
   }
 }
