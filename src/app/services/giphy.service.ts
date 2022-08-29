@@ -48,15 +48,15 @@ export class GiphyService {
     return this.http.get(`v1/gifs/${id}`);
   }
 
-  remove(id: string): Observable<any> {
-    const form = new FormData();
-    form.append('gif_id', id);
-    form.append('key', 'delete_gif');
-    form.append('value', 'true');
-    return this.http.post(`https://giphy.com/ajax/gif/update`, form);
-  }
-
   getCollection(): Observable<any> {
     return this.http.get(`v4/channels/${environment.channelId}/feed/`);
+  }
+
+  getByIds(ids: string): Observable<any> {
+    return this.http.get('v1/gifs', {
+      params: {
+        ids: ids
+      }
+    });
   }
 }

@@ -1,13 +1,14 @@
 <div class="container" (mouseenter)="showPanel = true" (mouseleave)="showPanel = false">
     <div class="body" (click)="view()">
-        <div *ngIf="imageUrl" class="image-wrapper">
-            <img [src]="imageUrl" class="preview animate__animated  animate__zoomIn">
+        <div class="image-wrapper">
+            <img [src]="imageUrl" *ngIf="imageUrl" class="preview animate__animated  animate__zoomIn">
             <div class="time-ago animate__animated animate__fadeInUp">{{data.timeAgo}}</div>
         </div>
-        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!imageUrl" class="animate__animated  animate__fadeIn">
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!imageUrl"
+            class="animate__animated  animate__fadeIn">
             <mat-spinner diameter="40"></mat-spinner>
         </div>
-        <div class="favorite" *ngIf="showPanel && !hideFavorite">
+        <div class="favorite animate__animated animate__zoomIn" *ngIf="showPanel && !hideFavorite">
             <app-gif-favorite [data]="data.id"></app-gif-favorite>
         </div>
     </div>
@@ -22,11 +23,5 @@
             <div fxFlex style="word-break: break-all;">{{data.user.username}}</div>
             <div>Rating: {{data.rating}}</div>
         </div>
-        <ng-container *ngIf="canRemove">
-            <br/>
-            <div fxLayout="row" fxLayoutAlign="end">
-                <button mat-raised-button color="warn" (click)="showConfirm()">Remove</button>
-            </div>
-        </ng-container>
     </mat-expansion-panel>
 </div>

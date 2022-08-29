@@ -4,7 +4,7 @@
     </div>
     <div fxFlex style="overflow: auto" fxLayout="row wrap">
         <app-gif [data]="item" *ngFor="let item of items" fxFlex="25"></app-gif>
-        <div *ngIf="items.length === 0" class="animate__animated animate__fadeInDown">
+        <div *ngIf="items?.length === 0" class="animate__animated animate__fadeInDown">
             There is no favorite GIFs
         </div>
     </div>

@@ -19,6 +19,12 @@ const PROXY_CONFIG = [
     target: 'https://giphy.com/api',
     changeOrigin: true,
     secure: true
+  },
+  {
+    context: ['/gif/update'],
+    target: 'https://giphy.com/ajax',
+    changeOrigin: true,
+    secure: true
   }
 ];
 

@@ -10,7 +10,7 @@ export class User {
   avatar: string;
   description: string;
   constructor(data: any) {
-    this.name = data?.display_name;
+    this.name = data?.display_name || data?.username;
     this.username = data?.username;
     this.avatar = data?.avatar_url;
     this.description = data?.description;

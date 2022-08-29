@@ -66,7 +66,6 @@ export class UploadComponent implements OnInit {
     }
 
     event.chipInput!.clear();
-    this.images.controls;
   }
 
   remove(name: string, form: AbstractControl): void {
